@@ -5,7 +5,6 @@ A cordova plugin, a JS version of [libircclient](http://www.ulduzsoft.com/libirc
 # Install
 
 1. ```cordova plugin add https://github.com/hkizuna/cordova-plugin-irc```
-
 2. ```cordova build ios``` or ```cordova build android```
 
 # Usage
