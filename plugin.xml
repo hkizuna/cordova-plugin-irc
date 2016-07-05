@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0" id="cordova-plugin-irc" version="0.0.1">
+  <name>irc</name>
+  <description>A cordova plugin, a JS version of libircclient</description>
+  <licience>MIT</licience>
+  <keywords>cordova,irc,libircclient</keywords>
+  <repo>https://github.com/hkizuna/cordova-plugin-irc.git</repo>
+  <issue>https://github.com/hkizuna/cordova-plugin-irc/issues</issue>
+
+  <!-- required cordova version -->
+  <engines>
+    <engine name="cordova" version=">=3.9.2" />
+  </engines>
+  <!-- js module -->
+  <js-module src="www/irc.js" name="IRC">
+    <clobbers target="IRC" />
+  </js-module>
+
+  <!-- ios -->
+  <platform name="ios">
+    <config-file target="config.xml" parent="/*">
+      <feature name="IRC">
+        <param name="ios-package" value="CDVIRC" />
+        <!-- <param name="onload" value="true" /> -->
+      </feature>
+    </config-file>
+
+    <!-- plugin source code -->
+    <header-file src="src/ios/CDVIRC.h" />
+    <source-file src="src/ios/CDVIRC.m" />
+
+    <!-- libircclient -->
+    <header-file src="src/ios/include/libirc_errors.h" />
+    <header-file src="src/ios/include/libirc_events.h" />
+    <header-file src="src/ios/include/libirc_options.h" />
+    <header-file src="src/ios/include/libirc_rfcnumeric.h" />
+    <header-file src="src/ios/include/libircclient.h" />
+    <source-file src="src/ios/libs/libircclient.a" framework="true" />
+  </platform>
+</plugin>
