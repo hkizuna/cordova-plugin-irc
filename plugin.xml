@@ -38,4 +38,25 @@
     <header-file src="src/ios/include/libircclient.h" />
     <source-file src="src/ios/libs/libircclient.a" framework="true" />
   </platform>
+
+  <platform name="android">
+    <config-file target="res/xml/config.xml" parent="/*">
+      <feature name="IRC">
+        <param name="android-package" value="xwang.cordova.irc.IRC"/>
+        <!-- <param name="onload" value="true" /> -->
+      </feature>
+    </config-file>
+
+    <!-- plugin source code -->
+    <source-file src="src/android/IRC.java" target-dir="src/xwang/cordova/irc" />
+    <source-file src="src/android/IRCClient.java" target-dir="src/xwang/cordova/irc" />
+    <!-- libircclient-jni -->
+    <source-file src="src/android/libs/arm64-v8a/libircclient-jni.so" target-dir="libs/arm64-v8a" />
+    <source-file src="src/android/libs/armeabi/libircclient-jni.so" target-dir="libs/armeabi" />
+    <source-file src="src/android/libs/armeabi-v7a/libircclient-jni.so" target-dir="libs/armeabi-v7a" />
+    <source-file src="src/android/libs/mips/libircclient-jni.so" target-dir="libs/mips" />
+    <source-file src="src/android/libs/mips64/libircclient-jni.so" target-dir="libs/mips64" />
+    <source-file src="src/android/libs/x86/libircclient-jni.so" target-dir="libs/x86" />
+    <source-file src="src/android/libs/x86_64/libircclient-jni.so" target-dir="libs/x86_64" />
+  </platform>
 </plugin>
