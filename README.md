@@ -52,7 +52,7 @@ IRC.message('hello irc');
 
 # TODO
 
-1. Add android version
+1. ~~Add android version~~
 
 2. Other APIs
 
