@@ -168,7 +168,7 @@ public class IRC extends CordovaPlugin {
     }
 
     private void sendNoResultPluginResult(CallbackContext callbackContext, boolean keep) {
-      PluginResult result = new PluginResult(PluginResult.Status.NO_RESULT);
+      PluginResult result = new PluginResult(PluginResult.Status.OK);
       result.setKeepCallback(keep);
       callbackContext.sendPluginResult(result);
     }
