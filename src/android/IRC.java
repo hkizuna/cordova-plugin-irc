@@ -163,7 +163,6 @@ public class IRC extends CordovaPlugin {
         }
       });
 
-      sendNoResultPluginResult(callbackContext, true);
       return true;
     }
 
