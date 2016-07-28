@@ -29,6 +29,7 @@
 
 - (void)connect:(CDVInvokedUrlCommand *)command;
 - (void)disconnect:(CDVInvokedUrlCommand *)command;
+- (void)isConnected:(CDVInvokedUrlCommand *)command;
 - (void)join:(CDVInvokedUrlCommand *)command;
 - (void)message:(CDVInvokedUrlCommand *)command;
 - (void)channel:(CDVInvokedUrlCommand *)command;

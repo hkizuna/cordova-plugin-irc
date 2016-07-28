@@ -115,6 +115,17 @@ CDVIRC *refToSelf;
   irc_destroy_session(session);
 }
 
+- (void)isConnected:(CDVInvokedUrlCommand *)command
+{
+  if (!session) {
+    [self successWithCallbackId:command.callbackId withBoolean:NO];
+  }
+  else {
+    BOOL connected = irc_is_connected(session) != 0;
+    [self successWithCallbackId:command.callbackId withBoolean:connected];
+  }
+}
+
 - (void)join:(CDVInvokedUrlCommand *)command
 {
   NSArray *arguments = [command arguments];
@@ -271,6 +282,12 @@ static void onNumericEvent(irc_session_t * session, unsigned int event, const ch
 - (void)failWithCallbackId:(NSString *)callbackId withMessage:(NSString *)message
 {
   CDVPluginResult *pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsString:message];
+  [self.commandDelegate sendPluginResult:pluginResult callbackId:callbackId];
+}
+
+- (void)successWithCallbackId:(NSString *)callbackId withBoolean:(BOOL)boolVal
+{
+  CDVPluginResult *pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsBool:boolVal];
   [self.commandDelegate sendPluginResult:pluginResult callbackId:callbackId];
 }
 

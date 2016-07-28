@@ -11,6 +11,10 @@ module.exports = {
     exec(successCallback, errorCallback, "IRC", "disconnect", []);
   },
 
+  isConnected: function (successCallback, errorCallback) {
+    exec(successCallback, errorCallback, "IRC", "isConnected", []);
+  },
+
   // join channel
   // should be used after connect
   join: function (channel, successCallback, errorCallback) {
