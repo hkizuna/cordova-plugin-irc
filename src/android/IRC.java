@@ -29,6 +29,9 @@ public class IRC extends CordovaPlugin {
       else if (action.equals("disconnect")) {
         return disconnect(args, callbackContext);
       }
+      else if (action.equals("isConnected")) {
+        return isConnected(args, callbackContext);
+      }
       else if (action.equals("join")) {
         return join(args, callbackContext);
       }
@@ -85,6 +88,23 @@ public class IRC extends CordovaPlugin {
     }
 
     protected boolean disconnect(CordovaArgs args, final CallbackContext callbackContext) {
+      return true;
+    }
+
+    protected boolean isConnected(CordovaArgs args, final CallbackContext callbackContext) {
+      cordova.getThreadPool().execute(new Runnable() {
+        @Override
+        public void run() {
+          try {
+            boolean connected = ircClient.isConnected();
+            PluginResult result = new PluginResult(PluginResult.Status.OK, connected);
+            callbackContext.sendPluginResult(result);
+          } catch (Exception e) {
+            callbackContext.error(e.getMessage());
+          }
+        }
+      });
+
       return true;
     }
 

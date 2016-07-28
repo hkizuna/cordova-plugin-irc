@@ -20,6 +20,7 @@ public class IRCClient {
   // connection
   public native int connect(String server, int port, String password, String nickname, String username, String realname); 
   public native void disconnect();
+  public native boolean isConnected();
 
   // join channel
   // should be used after connect
