@@ -148,14 +148,21 @@ public class IRC extends CordovaPlugin {
         @Override
         public void run() {
           try {
-            ircClient.message(channel, content);
+            int errorCode = ircClient.message(channel, content);
+            PluginResult result = null;
+            if (errorCode == 0) {
+              result = new PluginResult(PluginResult.Status.OK);
+            }
+            else {
+              result = new PluginResult(PluginResult.Status.ERROR);
+            }
+            callbackContext.sendPluginResult(result);
           } catch (Exception e) {
             callbackContext.error(e.getMessage());
           }
         }
       });
 
-      sendNoResultPluginResult(callbackContext, false);
       return true;
     }
 
