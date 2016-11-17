@@ -88,6 +88,19 @@ public class IRC extends CordovaPlugin {
     }
 
     protected boolean disconnect(CordovaArgs args, final CallbackContext callbackContext) {
+      cordova.getThreadPool().execute(new Runnable() {
+        @Override
+        public void run() {
+          try {
+            ircClient.disconnect();
+          } catch (Exception e) {
+            callbackContext.error(e.getMessage());
+          }
+        }
+      });
+
+      PluginResult result = new PluginResult(PluginResult.Status.OK, true);
+      callbackContext.sendPluginResult(result);
       return true;
     }
 

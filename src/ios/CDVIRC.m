@@ -111,8 +111,16 @@ CDVIRC *refToSelf;
 
 - (void)disconnect:(CDVInvokedUrlCommand *)command
 {
-  irc_disconnect(session);
-  irc_destroy_session(session);
+  if (session) {
+    irc_disconnect(session);
+    irc_destroy_session(session);
+    session = nil;
+  }
+  if (thread) {
+    [thread cancel];
+    thread = nil;
+  }
+  [self successWithCallbackId:command.callbackId withBoolean:TRUE];
 }
 
 - (void)isConnected:(CDVInvokedUrlCommand *)command
